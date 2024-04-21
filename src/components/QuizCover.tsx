@@ -2,8 +2,7 @@ import { Typography, Button, Box } from '@mui/material';
 
 import React from 'react';
 
-const QuizCover = ({ onStart, showQuiz }: { onStart: () => void; showQuiz: boolean }) => {
-	console.log('show', showQuiz);
+const QuizCover = ({ onStart }: { onStart: () => void }) => {
 	return (
 		<Box
 			sx={{
