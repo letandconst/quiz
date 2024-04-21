@@ -3,6 +3,8 @@ import QuestionItem from './QuestionItem';
 import { useState, useEffect } from 'react';
 
 import Fireworks from 'react-canvas-confetti/dist/presets/fireworks';
+import QuizCompleted from './QuizCompleted';
+import QuizCover from './QuizCover';
 interface QuizData {
 	question: string;
 	correctAnswer: string;
@@ -17,7 +19,7 @@ const QuizCard = ({ data }: QuizCardProps) => {
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 	const [userAnswer, setUserAnswer] = useState<string>('');
 	const [incorrectAnswer, setIncorrectAnswer] = useState<boolean>(false);
-
+	const [showQuiz, setShowQuiz] = useState<boolean>(false);
 	const currentQuestion = data[currentIndex];
 	const totalQuestions = data.length;
 
@@ -36,6 +38,10 @@ const QuizCard = ({ data }: QuizCardProps) => {
 			setIncorrectAnswer(true);
 			// Handle incorrect answer behavior (if needed)
 		}
+	};
+
+	const handleStartQuiz = () => {
+		setShowQuiz(true);
 	};
 
 	useEffect(() => {
@@ -75,103 +81,81 @@ const QuizCard = ({ data }: QuizCardProps) => {
 				}}
 			>
 				<>
+					{!showQuiz && <QuizCover onStart={handleStartQuiz} />}
+
 					{showConfetti && <Fireworks autorun={{ speed: 1, duration: 5000 }} />}
 
-					<Box
-						bgcolor='rgba(255,255,255,0.4)'
-						height='100%'
-					>
-						{allQuestionsAnswered ? (
-							<Box
-								sx={{
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									height: '100%',
-									flexDirection: 'column',
-									button: {
-										marginTop: '32px',
-									},
-								}}
-							>
-								<Typography
-									variant='h3'
-									color='primary'
-									align='center'
-								>
-									Congratulations! <br />
-									You've answered all the questions correctly.
-								</Typography>
-								<Button
-									variant='contained'
-									onClick={() => window.location.reload()}
-								>
-									Go back
-								</Button>
-							</Box>
-						) : (
-							<>
-								<LinearProgress
-									variant='determinate'
-									value={overallProgress}
-								/>
+					{showQuiz && (
+						<Box
+							bgcolor='rgba(255,255,255,0.4)'
+							height='100%'
+						>
+							{allQuestionsAnswered ? (
+								<QuizCompleted />
+							) : (
+								<>
+									<LinearProgress
+										variant='determinate'
+										value={overallProgress}
+									/>
 
-								<Box
-									sx={{
-										display: 'flex',
-										flexDirection: 'column',
-										gap: '18px',
-										padding: '24px',
-										justifyContent: 'space-between',
-										height: '100%',
-									}}
-								>
-									{currentIndex < data.length && (
-										<>
-											<QuestionItem
-												currentIndex={currentIndex}
-												totalQuestions={totalQuestions}
-												question={currentQuestion.question}
-											/>
-											<Box sx={{ marginTop: 'auto' }}>
-												<TextField
-													variant='outlined'
-													placeholder='Enter your answer'
-													fullWidth
-													value={userAnswer}
-													onChange={(e) => setUserAnswer(e.target.value)}
-													autoComplete='off'
-													sx={{
-														input: {
-															borderWidth: '1px!important',
-															border: 'solid',
-															borderRadius: '6px',
-															borderColor: incorrectAnswer ? '#ff6161' : ' #c5c8d5',
-															'&:focus': {
-																borderColor: incorrectAnswer ? '#ff6161' : '#1976d2',
-															},
-														},
-														'& fieldset': {
-															display: 'none',
-														},
-													}}
+									<Box
+										sx={{
+											display: 'flex',
+											flexDirection: 'column',
+											gap: '18px',
+											padding: '24px',
+											justifyContent: 'space-between',
+											height: '100%',
+										}}
+									>
+										{currentIndex < data.length && (
+											<>
+												<QuestionItem
+													currentIndex={currentIndex}
+													totalQuestions={totalQuestions}
+													question={currentQuestion.question}
 												/>
-												<Button
-													variant='contained'
-													onClick={handleCheckAnswer}
-													sx={{
-														marginTop: '8px',
-													}}
-												>
-													Check answer
-												</Button>
-											</Box>
-										</>
-									)}
-								</Box>
-							</>
-						)}
-					</Box>
+												<Box sx={{ marginTop: 'auto' }}>
+													<TextField
+														variant='outlined'
+														placeholder='Enter your answer'
+														fullWidth
+														value={userAnswer}
+														onChange={(e) => setUserAnswer(e.target.value)}
+														autoComplete='off'
+														sx={{
+															input: {
+																borderWidth: '1px!important',
+																border: 'solid',
+																borderRadius: '6px',
+																borderColor: incorrectAnswer ? '#ff6161' : ' #c5c8d5',
+																'&:focus': {
+																	borderColor: incorrectAnswer ? '#ff6161' : '#1976d2',
+																},
+															},
+															'& fieldset': {
+																display: 'none',
+															},
+														}}
+													/>
+													<Button
+														variant='contained'
+														onClick={handleCheckAnswer}
+														sx={{
+															marginTop: '8px',
+														}}
+													>
+														Check answer
+													</Button>
+												</Box>
+											</>
+										)}
+									</Box>
+								</>
+							)}
+						</Box>
+					)}
 				</>
 			</Box>
 		</>
