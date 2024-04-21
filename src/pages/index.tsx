@@ -1,7 +1,19 @@
 import QuizCard from '@/components/QuizCard';
+import QuizCountdown from '@/components/QuizCountdown';
 import { Box } from '@mui/material';
+import { useState } from 'react';
 
 export default function Home() {
+	const [showCountDown, setShowCountdown] = useState<boolean>(false);
+
+	const handleShowCountdown = () => {
+		setShowCountdown(true);
+	};
+
+	const handleHideCountdown = () => {
+		setShowCountdown(false);
+	};
+
 	const quizData = [
 		{
 			question: 'What is the capital of Philippines?',
@@ -24,9 +36,15 @@ export default function Home() {
 				display: 'flex',
 				width: '100%',
 				padding: '8px',
+				position: 'relative',
 			}}
 		>
-			<QuizCard data={quizData} />
+			{showCountDown && <QuizCountdown />}
+			<QuizCard
+				data={quizData}
+				handleShowCountdown={handleShowCountdown}
+				handleHideCountdown={handleHideCountdown}
+			/>
 		</Box>
 	);
 }

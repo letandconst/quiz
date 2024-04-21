@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Fireworks from 'react-canvas-confetti/dist/presets/fireworks';
 import QuizCompleted from './QuizCompleted';
 import QuizCover from './QuizCover';
+
 interface QuizData {
 	question: string;
 	correctAnswer: string;
@@ -12,9 +13,11 @@ interface QuizData {
 
 interface QuizCardProps {
 	data: QuizData[];
+	handleShowCountdown: () => void;
+	handleHideCountdown: () => void;
 }
 
-const QuizCard = ({ data }: QuizCardProps) => {
+const QuizCard = ({ data, handleShowCountdown, handleHideCountdown }: QuizCardProps) => {
 	const [showConfetti, setShowConfetti] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 	const [userAnswer, setUserAnswer] = useState<string>('');
@@ -34,9 +37,10 @@ const QuizCard = ({ data }: QuizCardProps) => {
 			setOverallProgress((currentIndex + 1) * (100 / totalQuestions));
 			setUserAnswer('');
 			setIncorrectAnswer(false);
+			handleHideCountdown();
 		} else {
 			setIncorrectAnswer(true);
-			// Handle incorrect answer behavior (if needed)
+			handleShowCountdown();
 		}
 	};
 
