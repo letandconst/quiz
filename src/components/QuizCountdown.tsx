@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 const QuizCountdown = ({ handleHideCountdown }: { handleHideCountdown: () => void }) => {
-	const [timeLeft, setTimeLeft] = useState<number>(120);
+	const [timeLeft, setTimeLeft] = useState<number>(20);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -33,7 +33,7 @@ const QuizCountdown = ({ handleHideCountdown }: { handleHideCountdown: () => voi
 		setTimeout(() => {
 			audio.pause();
 			audio.currentTime = 0;
-		}, 10000);
+		}, 9800);
 	};
 
 	return (
