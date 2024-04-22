@@ -153,6 +153,7 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 														}}
 													/>
 													<Button
+														disabled={!userAnswer}
 														variant='contained'
 														onClick={handleCheckAnswer}
 														sx={{
