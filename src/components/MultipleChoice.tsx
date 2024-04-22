@@ -17,14 +17,15 @@ const MultipleChoice = ({ options, selectedOption, onChange }: MultipleChoiceOpt
 				value={selectedOption}
 				onChange={handleChange}
 			>
-				{options.map((option, index) => (
-					<FormControlLabel
-						key={index}
-						value={option}
-						control={<Radio />}
-						label={option}
-					/>
-				))}
+				{options &&
+					options.map((option, index) => (
+						<FormControlLabel
+							key={index}
+							value={option}
+							control={<Radio />}
+							label={option}
+						/>
+					))}
 			</RadioGroup>
 		</FormControl>
 	);
