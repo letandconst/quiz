@@ -18,6 +18,12 @@ const QuizCompleted = () => {
 				variant='h3'
 				color='primary'
 				align='center'
+				sx={{
+					'@media screen and (max-width:479px)': {
+						fontSize: '28px',
+						marginTop: '60px',
+					},
+				}}
 			>
 				Congratulations! <br />
 				You've answered all the questions correctly.

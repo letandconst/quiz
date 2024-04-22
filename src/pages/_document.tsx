@@ -5,6 +5,10 @@ export default function Document() {
 		<Html lang='en'>
 			<Head>
 				<title>Mini Quiz</title>
+				<link
+					rel='manifest'
+					href='/manifest.json'
+				/>
 			</Head>
 			<body>
 				<Main />
