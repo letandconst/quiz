@@ -5,10 +5,14 @@ import { useState, useEffect } from 'react';
 import Fireworks from 'react-canvas-confetti/dist/presets/fireworks';
 import QuizCompleted from './QuizCompleted';
 import QuizCover from './QuizCover';
+import MultipleChoice from './MultipleChoice';
 
 interface QuizData {
 	question: string;
 	correctAnswer: string;
+	type: string;
+	options: string[];
+	videoURL: string;
 }
 
 interface QuizCardProps {
@@ -30,11 +34,18 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 
 	const allQuestionsAnswered = currentIndex === totalQuestions;
 
-	const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setUserAnswer(e.target.value);
+	const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement> | string) => {
+		if (typeof e === 'string') {
+			setUserAnswer(e);
+			if (e === '') {
+				setIncorrectAnswer(false);
+			}
+		} else {
+			setUserAnswer(e.target.value);
 
-		if (e.target.value === '') {
-			setIncorrectAnswer(false);
+			if (e.target.value === '') {
+				setIncorrectAnswer(false);
+			}
 		}
 	};
 
@@ -129,40 +140,59 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 													totalQuestions={totalQuestions}
 													question={currentQuestion.question}
 												/>
-												<Box sx={{ marginTop: 'auto' }}>
-													<TextField
-														variant='outlined'
-														placeholder='Enter your answer'
-														fullWidth
-														value={userAnswer}
-														onChange={handleChangeAnswer}
-														autoComplete='off'
-														sx={{
-															input: {
-																borderWidth: '1px!important',
-																border: 'solid',
-																borderRadius: '6px',
-																borderColor: incorrectAnswer ? '#ff6161' : ' #c5c8d5',
-																'&:focus': {
-																	borderColor: incorrectAnswer ? '#ff6161' : '#1976d2',
+
+												{currentQuestion.type === 'text' ? (
+													<Box sx={{ marginTop: 'auto' }}>
+														<TextField
+															variant='outlined'
+															placeholder='Enter your answer'
+															fullWidth
+															value={userAnswer}
+															onChange={handleChangeAnswer}
+															autoComplete='off'
+															sx={{
+																input: {
+																	borderWidth: '1px!important',
+																	border: 'solid',
+																	borderRadius: '6px',
+																	borderColor: incorrectAnswer ? '#ff6161' : ' #c5c8d5',
+																	'&:focus': {
+																		borderColor: incorrectAnswer ? '#ff6161' : '#1976d2',
+																	},
 																},
-															},
-															'& fieldset': {
-																display: 'none',
-															},
-														}}
-													/>
-													<Button
-														disabled={!userAnswer}
-														variant='contained'
-														onClick={handleCheckAnswer}
-														sx={{
-															marginTop: '8px',
-														}}
-													>
-														Check answer
-													</Button>
-												</Box>
+																'& fieldset': {
+																	display: 'none',
+																},
+															}}
+														/>
+													</Box>
+												) : (
+													<>
+														<video controls>
+															<source
+																src={currentQuestion.videoURL}
+																type='video/mp4'
+															/>
+														</video>
+
+														<MultipleChoice
+															options={currentQuestion.options}
+															selectedOption={userAnswer}
+															onChange={handleChangeAnswer}
+														/>
+													</>
+												)}
+
+												<Button
+													disabled={!userAnswer}
+													variant='contained'
+													onClick={handleCheckAnswer}
+													sx={{
+														marginTop: '8px',
+													}}
+												>
+													Check answer
+												</Button>
 											</>
 										)}
 									</Box>

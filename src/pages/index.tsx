@@ -20,14 +20,19 @@ export default function Home() {
 		{
 			question: 'What is the capital of Philippines?',
 			correctAnswer: 'Manila',
+			type: 'text',
 		},
 		{
-			question: 'What is 1+1',
+			question: 'Watch the video and select the correct answer:',
+			videoURL: './video/sample.mp4',
+			options: ['A. China', 'B. Japan', 'C. South Korea'],
+			correctAnswer: 'B. Japan',
+			type: 'multiple_choice',
+		},
+		{
+			question: 'Answer this question: 1 + 1 = ?',
 			correctAnswer: '2',
-		},
-		{
-			question: 'How many letters are in the alphabet?',
-			correctAnswer: '26',
+			type: 'text',
 		},
 	];
 
