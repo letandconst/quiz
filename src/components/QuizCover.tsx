@@ -11,6 +11,9 @@ const QuizCover = ({ onStart }: { onStart: () => void }) => {
 				alignItems: 'center',
 				justifyContent: 'center',
 				height: '100%',
+				'@media screen and (max-width:479px)': {
+					padding: '0 12px',
+				},
 			}}
 		>
 			<Typography
