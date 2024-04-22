@@ -11,8 +11,8 @@ interface QuizData {
 	question: string;
 	correctAnswer: string;
 	type: string;
-	options: string[];
-	videoURL: string;
+	options?: string[];
+	videoURL?: string;
 }
 
 interface QuizCardProps {
