@@ -2,7 +2,7 @@ import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import React from 'react';
 
 interface MultipleChoiceOptionsProps {
-	options: string[];
+	options: string[] | undefined;
 	selectedOption: string;
 	onChange: (value: string) => void;
 }
