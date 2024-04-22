@@ -1,6 +1,6 @@
-import { Box, Button, LinearProgress, TextField, Typography } from '@mui/material';
+import { Box, Button, LinearProgress, TextField } from '@mui/material';
 import QuestionItem from './QuestionItem';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import Fireworks from 'react-canvas-confetti/dist/presets/fireworks';
 import QuizCompleted from './QuizCompleted';
@@ -29,12 +29,14 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 	const currentQuestion = data[currentIndex];
 	const totalQuestions = data.length;
 
+	const videoRef = useRef<HTMLVideoElement>(null);
+
 	const initialOverallProgress = (currentIndex + 1) * (100 / totalQuestions);
 	const [overallProgress, setOverallProgress] = useState<number>(initialOverallProgress);
 
 	const allQuestionsAnswered = currentIndex === totalQuestions;
 
-	const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement> | string) => {
+	const handleChangeAnswer = (e: any) => {
 		if (typeof e === 'string') {
 			setUserAnswer(e);
 			if (e === '') {
@@ -58,6 +60,10 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 		} else {
 			setIncorrectAnswer(true);
 			handleShowCountdown();
+
+			if (videoRef.current && !videoRef.current.paused) {
+				videoRef.current.pause();
+			}
 		}
 	};
 
@@ -168,7 +174,10 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 													</Box>
 												) : (
 													<>
-														<video controls>
+														<video
+															controls
+															ref={videoRef}
+														>
 															<source
 																src={currentQuestion.videoURL}
 																type='video/mp4'
