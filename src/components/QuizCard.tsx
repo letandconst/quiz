@@ -14,10 +14,9 @@ interface QuizData {
 interface QuizCardProps {
 	data: QuizData[];
 	handleShowCountdown: () => void;
-	handleHideCountdown: () => void;
 }
 
-const QuizCard = ({ data, handleShowCountdown, handleHideCountdown }: QuizCardProps) => {
+const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 	const [showConfetti, setShowConfetti] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 	const [userAnswer, setUserAnswer] = useState<string>('');
@@ -31,13 +30,20 @@ const QuizCard = ({ data, handleShowCountdown, handleHideCountdown }: QuizCardPr
 
 	const allQuestionsAnswered = currentIndex === totalQuestions;
 
+	const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setUserAnswer(e.target.value);
+
+		if (e.target.value === '') {
+			setIncorrectAnswer(false);
+		}
+	};
+
 	const handleCheckAnswer = () => {
 		if (userAnswer.trim().toLowerCase() === currentQuestion.correctAnswer.toLowerCase()) {
 			setCurrentIndex((prevIndex) => prevIndex + 1);
 			setOverallProgress((currentIndex + 1) * (100 / totalQuestions));
 			setUserAnswer('');
 			setIncorrectAnswer(false);
-			handleHideCountdown();
 		} else {
 			setIncorrectAnswer(true);
 			handleShowCountdown();
@@ -81,6 +87,9 @@ const QuizCard = ({ data, handleShowCountdown, handleHideCountdown }: QuizCardPr
 						backgroundSize: '500px',
 						backgroundPosition: 'center',
 						backgroundRepeat: 'no-repeat',
+						'@media screen and (max-width:479px)': {
+							backgroundSize: 'contain',
+						},
 					},
 				}}
 			>
@@ -126,7 +135,7 @@ const QuizCard = ({ data, handleShowCountdown, handleHideCountdown }: QuizCardPr
 														placeholder='Enter your answer'
 														fullWidth
 														value={userAnswer}
-														onChange={(e) => setUserAnswer(e.target.value)}
+														onChange={handleChangeAnswer}
 														autoComplete='off'
 														sx={{
 															input: {

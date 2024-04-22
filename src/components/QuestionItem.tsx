@@ -18,6 +18,11 @@ const QuestionItem = ({ currentIndex, totalQuestions, question }: QuestionItemPr
 				lineHeight='1.1'
 				letterSpacing='-0.02em'
 				marginTop='4px'
+				sx={{
+					'@media screen and (max-width:479px)': {
+						fontSize: '28px',
+					},
+				}}
 			>
 				{question}
 			</Typography>

@@ -51,3 +51,21 @@ a {
 	src: url('/fonts/Figtree-Regular.ttf');
 	font-weight: 400;
 }
+
+@keyframes tilt-shaking {
+	0% {
+		transform: rotate(0deg);
+	}
+	25% {
+		transform: rotate(2deg);
+	}
+	50% {
+		transform: rotate(0eg);
+	}
+	75% {
+		transform: rotate(-2deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}

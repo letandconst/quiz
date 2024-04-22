@@ -8,10 +8,12 @@ export default function Home() {
 
 	const handleShowCountdown = () => {
 		setShowCountdown(true);
+		document.body.style.overflow = 'hidden';
 	};
 
 	const handleHideCountdown = () => {
 		setShowCountdown(false);
+		document.body.style.overflow = 'auto';
 	};
 
 	const quizData = [
@@ -39,11 +41,10 @@ export default function Home() {
 				position: 'relative',
 			}}
 		>
-			{showCountDown && <QuizCountdown />}
+			{showCountDown && <QuizCountdown handleHideCountdown={handleHideCountdown} />}
 			<QuizCard
 				data={quizData}
 				handleShowCountdown={handleShowCountdown}
-				handleHideCountdown={handleHideCountdown}
 			/>
 		</Box>
 	);
