@@ -97,7 +97,6 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 			<Box
 				className='quiz-card'
 				sx={{
-					borderRadius: '8px',
 					display: 'flex',
 					flexDirection: 'column',
 					height: '100%',
