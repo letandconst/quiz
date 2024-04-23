@@ -12,6 +12,13 @@ const QuizCompleted = () => {
 				height: '100%',
 				h3: {
 					fontSize: '72px',
+					'@media screen and (max-width:579px)': {
+						fontSize: '32px',
+					},
+				},
+				'@media screen and (max-width:579px)': {
+					padding: '32px 24px 40px 24px',
+					boxSizing: 'border-box',
 				},
 			}}
 		>
@@ -27,6 +34,9 @@ const QuizCompleted = () => {
 					align='center'
 					sx={{
 						fontSize: '20px',
+						'@media screen and (max-width:579px)': {
+							fontSize: '16px',
+						},
 					}}
 				>
 					Good Job! You've answered all the questions correctly.
@@ -42,6 +52,9 @@ const QuizCompleted = () => {
 					boxShadow: 'none',
 					background: 'transparent',
 					borderRadius: '45px',
+					'@media screen and (max-width:579px)': {
+						width: '100%',
+					},
 				}}
 			>
 				Retry

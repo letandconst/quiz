@@ -14,6 +14,13 @@ const QuizCover = ({ onStart }: { onStart: () => void }) => {
 				height: '100%',
 				h3: {
 					fontSize: '72px',
+					'@media screen and (max-width:579px)': {
+						fontSize: '48px',
+					},
+				},
+				'@media screen and (max-width:579px)': {
+					padding: '32px 24px 40px 24px',
+					boxSizing: 'border-box',
 				},
 			}}
 		>
@@ -30,6 +37,9 @@ const QuizCover = ({ onStart }: { onStart: () => void }) => {
 					sx={{
 						maxWidth: '32ch',
 						fontSize: '20px',
+						'@media screen and (max-width:579px)': {
+							fontSize: '16px',
+						},
 					}}
 				>
 					Ready to challenge your mind? <br /> Join us and see if you have what it takes to be the ultimate champion!
@@ -45,6 +55,9 @@ const QuizCover = ({ onStart }: { onStart: () => void }) => {
 					boxShadow: 'none',
 					background: 'transparent',
 					borderRadius: '45px',
+					'@media screen and (max-width:579px)': {
+						width: '100%',
+					},
 				}}
 			>
 				Start
