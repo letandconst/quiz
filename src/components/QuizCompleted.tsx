@@ -5,34 +5,46 @@ const QuizCompleted = () => {
 		<Box
 			sx={{
 				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				height: '100%',
 				flexDirection: 'column',
-				button: {
-					marginTop: '32px',
+				alignItems: 'center',
+				padding: '60px 0 80px 0',
+				justifyContent: 'space-between',
+				height: '100%',
+				h3: {
+					fontSize: '72px',
 				},
 			}}
 		>
-			<Typography
-				variant='h3'
-				color='primary'
-				align='center'
-				sx={{
-					'@media screen and (max-width:479px)': {
-						fontSize: '28px',
-						marginTop: '60px',
-					},
-				}}
-			>
-				Congratulations! <br />
-				You've answered all the questions correctly.
-			</Typography>
+			<Box>
+				<Typography
+					variant='h3'
+					textAlign='center'
+				>
+					Congratulations!
+				</Typography>
+				<Typography
+					variant='body1'
+					align='center'
+					sx={{
+						fontSize: '20px',
+					}}
+				>
+					Good Job! You've answered all the questions correctly.
+				</Typography>
+			</Box>
 			<Button
 				variant='contained'
 				onClick={() => window.location.reload()}
+				sx={{
+					width: '300px',
+					border: '2px solid #ffffff',
+					color: '#ffffff',
+					boxShadow: 'none',
+					background: 'transparent',
+					borderRadius: '45px',
+				}}
 			>
-				Go back
+				Retry
 			</Button>
 		</Box>
 	);

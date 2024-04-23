@@ -18,19 +18,53 @@ export default function Home() {
 
 	const quizData = [
 		{
-			question: 'What is the capital of Philippines?',
+			question: '1 What is the capital of Philippines?',
 			correctAnswer: 'Manila',
 			type: 'text',
 		},
 		{
-			question: 'Watch the video and select the correct answer:',
+			question: '2 Watch the video and select the correct answer:',
 			videoURL: './video/sample.mp4',
 			options: ['A. China', 'B. Japan', 'C. South Korea'],
 			correctAnswer: 'B. Japan',
 			type: 'multiple_choice',
 		},
 		{
-			question: 'Answer this question: 1 + 1 = ?',
+			question: '3 Answer this question: 1 + 1 = ?',
+			correctAnswer: '2',
+			type: 'text',
+		},
+		{
+			question: '4 What is the capital of Philippines?',
+			correctAnswer: 'Manila',
+			type: 'text',
+		},
+		{
+			question: '5 Watch the video and select the correct answer:',
+			videoURL: './video/sample.mp4',
+			options: ['A. China', 'B. Japan', 'C. South Korea'],
+			correctAnswer: 'B. Japan',
+			type: 'multiple_choice',
+		},
+		{
+			question: '6 Answer this question: 1 + 1 = ?',
+			correctAnswer: '2',
+			type: 'text',
+		},
+		{
+			question: '7 What is the capital of Philippines?',
+			correctAnswer: 'Manila',
+			type: 'text',
+		},
+		{
+			question: '8 Watch the video and select the correct answer:',
+			videoURL: './video/sample.mp4',
+			options: ['A. China', 'B. Japan', 'C. South Korea'],
+			correctAnswer: 'B. Japan',
+			type: 'multiple_choice',
+		},
+		{
+			question: '9 Answer this question: 1 + 1 = ?',
 			correctAnswer: '2',
 			type: 'text',
 		},
@@ -42,7 +76,6 @@ export default function Home() {
 				height: '100dvh',
 				display: 'flex',
 				width: '100%',
-				padding: '8px',
 				position: 'relative',
 			}}
 		>

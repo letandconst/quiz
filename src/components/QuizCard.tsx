@@ -1,11 +1,13 @@
-import { Box, Button, LinearProgress, TextField } from '@mui/material';
+import { Box, Button, LinearProgress, TextField, Typography } from '@mui/material';
 import QuestionItem from './QuestionItem';
 import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Fireworks from 'react-canvas-confetti/dist/presets/fireworks';
 import QuizCompleted from './QuizCompleted';
 import QuizCover from './QuizCover';
 import MultipleChoice from './MultipleChoice';
+import React from 'react';
 
 interface QuizData {
 	question: string;
@@ -26,6 +28,7 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 	const [userAnswer, setUserAnswer] = useState<string>('');
 	const [incorrectAnswer, setIncorrectAnswer] = useState<boolean>(false);
 	const [showQuiz, setShowQuiz] = useState<boolean>(false);
+	const [showClue, setShowClue] = useState<boolean>(false);
 	const currentQuestion = data[currentIndex];
 	const totalQuestions = data.length;
 
@@ -64,6 +67,12 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 			if (videoRef.current && !videoRef.current.paused) {
 				videoRef.current.pause();
 			}
+
+			return;
+		}
+
+		if ((currentIndex + 1) % 3 === 0 && currentIndex + 1 !== totalQuestions) {
+			setShowClue(true);
 		}
 	};
 
@@ -79,6 +88,10 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 		}
 	}, [allQuestionsAnswered]);
 
+	useEffect(() => {
+		console.log(`Current question index is ${currentIndex}`);
+	}, [currentIndex]);
+
 	return (
 		<>
 			<Box
@@ -87,11 +100,10 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 					borderRadius: '8px',
 					display: 'flex',
 					flexDirection: 'column',
-					height: '600px',
+					height: '100%',
 					width: '100%',
 					margin: 'auto',
 					border: '1px solid #f1f4f9',
-					boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
 					position: 'relative',
 					' &::before': {
 						position: 'absolute',
@@ -99,116 +111,184 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 						width: '100%',
 						height: '100%',
 						zIndex: '-1',
-						opacity: '0.1',
-						backgroundImage: 'url(./assets/logo.png)',
-						backgroundSize: '500px',
+						backgroundImage: 'url(./assets/tab-bg.png)',
+						backgroundSize: 'cover',
 						backgroundPosition: 'center',
 						backgroundRepeat: 'no-repeat',
-						'@media screen and (max-width:479px)': {
-							backgroundSize: 'contain',
-						},
+					},
+					' > div ': {
+						height: '100%',
 					},
 				}}
 			>
 				<>
-					{!showQuiz && <QuizCover onStart={handleStartQuiz} />}
-
-					{showConfetti && <Fireworks autorun={{ speed: 1, duration: 5000 }} />}
-
-					{showQuiz && (
-						<Box
-							bgcolor='rgba(255,255,255,0.4)'
-							height='100%'
+					{!showQuiz && (
+						<motion.div
+							initial={{ opacity: 1, scale: 1 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.9 }}
+							transition={{ duration: 0.8 }}
 						>
-							{allQuestionsAnswered ? (
-								<QuizCompleted />
-							) : (
-								<>
-									<LinearProgress
-										variant='determinate'
-										value={overallProgress}
-									/>
+							<QuizCover onStart={handleStartQuiz} />
+						</motion.div>
+					)}
 
-									<Box
-										sx={{
-											display: 'flex',
-											flexDirection: 'column',
-											gap: '18px',
-											padding: '24px',
-											justifyContent: 'space-between',
-											height: '100%',
-										}}
-									>
-										{currentIndex < data.length && (
-											<>
-												<QuestionItem
-													currentIndex={currentIndex}
-													totalQuestions={totalQuestions}
-													question={currentQuestion.question}
-												/>
+					<AnimatePresence>
+						{showQuiz && (
+							<motion.div
+								initial={{ opacity: 0, scale: 0.9 }}
+								animate={{ opacity: 1, scale: 1 }}
+								exit={{ opacity: 0, scale: 0.9 }}
+								transition={{ duration: 1.2 }}
+							>
+								<Box height='100%'>
+									{allQuestionsAnswered ? (
+										<QuizCompleted />
+									) : (
+										<>
+											<LinearProgress
+												variant='determinate'
+												value={overallProgress}
+												sx={{
+													' > span': {
+														backgroundColor: '#000000',
+													},
+												}}
+											/>
 
-												{currentQuestion.type === 'text' ? (
-													<Box sx={{ marginTop: 'auto' }}>
-														<TextField
-															variant='outlined'
-															placeholder='Enter your answer'
-															fullWidth
-															value={userAnswer}
-															onChange={handleChangeAnswer}
-															autoComplete='off'
+											<Box
+												sx={{
+													display: 'flex',
+													flexDirection: 'column',
+													gap: '8px',
+													padding: '24px',
+													justifyContent: 'space-between',
+													height: '100%',
+												}}
+											>
+												{currentIndex < data.length && !showClue && (
+													<>
+														<motion.div
+															initial={{ opacity: 0, scale: 0.9 }}
+															animate={{ opacity: 1, scale: 1 }}
+															exit={{ opacity: 0, scale: 0.9 }}
+															transition={{ duration: 1 }}
+														>
+															<QuestionItem
+																currentIndex={currentIndex}
+																totalQuestions={totalQuestions}
+																question={data[currentIndex].question}
+															/>
+														</motion.div>
+
+														{data[currentIndex].type === 'text' ? (
+															<Box sx={{ marginTop: 'auto' }}>
+																<TextField
+																	variant='outlined'
+																	placeholder='Enter your answer'
+																	fullWidth
+																	value={userAnswer}
+																	onChange={handleChangeAnswer}
+																	autoComplete='off'
+																	sx={{
+																		input: {
+																			borderWidth: '1px!important',
+																			border: 'solid',
+																			background: '#ffffff',
+																			borderRadius: '6px',
+																			borderColor: incorrectAnswer ? '#ff6161' : '#ffffff',
+																			'&:focus': {
+																				borderColor: incorrectAnswer ? '#ff6161' : '#ffffff',
+																			},
+																		},
+																		'& fieldset': {
+																			display: 'none',
+																		},
+																	}}
+																/>
+															</Box>
+														) : (
+															<>
+																<video
+																	controls
+																	ref={videoRef}
+																>
+																	<source
+																		src={data[currentIndex].videoURL}
+																		type='video/mp4'
+																	/>
+																</video>
+
+																<MultipleChoice
+																	options={data[currentIndex].options}
+																	selectedOption={userAnswer}
+																	onChange={handleChangeAnswer}
+																/>
+															</>
+														)}
+
+														<Button
+															variant='contained'
+															onClick={handleCheckAnswer}
 															sx={{
-																input: {
-																	borderWidth: '1px!important',
-																	border: 'solid',
-																	borderRadius: '6px',
-																	borderColor: incorrectAnswer ? '#ff6161' : ' #c5c8d5',
-																	'&:focus': {
-																		borderColor: incorrectAnswer ? '#ff6161' : '#1976d2',
-																	},
-																},
-																'& fieldset': {
-																	display: 'none',
+																border: '2px solid #ffffff',
+																color: '#ffffff',
+																boxShadow: 'none',
+																background: 'transparent',
+																'&:hover': {
+																	background: 'transparent',
 																},
 															}}
-														/>
-													</Box>
-												) : (
-													<>
-														<video
-															controls
-															ref={videoRef}
 														>
-															<source
-																src={currentQuestion.videoURL}
-																type='video/mp4'
-															/>
-														</video>
-
-														<MultipleChoice
-															options={currentQuestion.options}
-															selectedOption={userAnswer}
-															onChange={handleChangeAnswer}
-														/>
+															Check answer
+														</Button>
 													</>
 												)}
 
-												<Button
-													disabled={!userAnswer}
-													variant='contained'
-													onClick={handleCheckAnswer}
-													sx={{
-														marginTop: '8px',
-													}}
-												>
-													Check answer
-												</Button>
-											</>
-										)}
-									</Box>
-								</>
-							)}
-						</Box>
-					)}
+												{showClue && (
+													<Box
+														sx={{
+															padding: '50px 0',
+															height: '100%',
+															display: 'flex',
+															justifyContent: 'space-between',
+															flexDirection: 'column',
+														}}
+													>
+														<Typography
+															variant='h5'
+															textAlign='center'
+														>
+															You've got the clues you need. Time to move forward and uncover what awaits.
+														</Typography>
+														<Button
+															variant='contained'
+															onClick={() => {
+																setShowClue(false);
+															}}
+															sx={{
+																margin: '0 auto',
+																width: '300px',
+																border: '2px solid #ffffff',
+																color: '#ffffff',
+																boxShadow: 'none',
+																background: 'transparent',
+																borderRadius: '45px',
+															}}
+														>
+															Proceed to the next question
+														</Button>
+													</Box>
+												)}
+											</Box>
+										</>
+									)}
+								</Box>
+							</motion.div>
+						)}
+					</AnimatePresence>
+
+					{showConfetti && <Fireworks autorun={{ speed: 1, duration: 5000 }} />}
 				</>
 			</Box>
 		</>

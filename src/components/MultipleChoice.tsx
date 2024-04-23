@@ -12,7 +12,14 @@ const MultipleChoice = ({ options, selectedOption, onChange }: MultipleChoiceOpt
 		onChange((event.target as HTMLInputElement).value);
 	};
 	return (
-		<FormControl component='fieldset'>
+		<FormControl
+			component='fieldset'
+			sx={{
+				'.Mui-checked': {
+					color: '#ffffff!important',
+				},
+			}}
+		>
 			<RadioGroup
 				value={selectedOption}
 				onChange={handleChange}

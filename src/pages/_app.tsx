@@ -11,8 +11,8 @@ const theme = createTheme({
 		MuiButton: {
 			styleOverrides: {
 				root: {
-					fontFamily: 'Figtree-Medium',
-					background: '#1976d2',
+					fontFamily: 'Figtree-SemiBold',
+					background: 'transparent',
 					color: '#ffffff',
 					padding: '8px 16px',
 				},
@@ -22,13 +22,21 @@ const theme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: 'Figtree-Medium',
+					color: '#000000',
 				},
 			},
 		},
 		MuiLinearProgress: {
 			styleOverrides: {
 				root: {
-					backgroundColor: '#e2eaf3',
+					backgroundColor: '#ffffff',
+				},
+			},
+		},
+		MuiRadio: {
+			styleOverrides: {
+				root: {
+					color: '#ffffff',
 				},
 			},
 		},

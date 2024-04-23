@@ -8,9 +8,6 @@ const QuizCountdown = ({ handleHideCountdown }: { handleHideCountdown: () => voi
 		const timer = setTimeout(() => {
 			if (timeLeft > 0) {
 				setTimeLeft((prevTime) => prevTime - 1);
-				if (timeLeft === 10) {
-					playAudio();
-				}
 			} else {
 				handleHideCountdown();
 			}
@@ -25,17 +22,6 @@ const QuizCountdown = ({ handleHideCountdown }: { handleHideCountdown: () => voi
 		return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 	};
 
-	const playAudio = () => {
-		const audio = new Audio('./audio/countdown-timer.mp3');
-		audio.volume = 1;
-		audio.play();
-
-		setTimeout(() => {
-			audio.pause();
-			audio.currentTime = 0;
-		}, 9800);
-	};
-
 	return (
 		<Box
 			id='countdown-timer'
@@ -48,7 +34,7 @@ const QuizCountdown = ({ handleHideCountdown }: { handleHideCountdown: () => voi
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
-				backgroundColor: 'rgba(0, 0, 0, 0.8)',
+				backgroundColor: 'rgba(0, 0, 0, 0.5)',
 				zIndex: 9999,
 				transition: 'opacity 0.5s ease',
 				opacity: '1',

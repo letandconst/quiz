@@ -1,6 +1,6 @@
 import { Typography, Button, Box } from '@mui/material';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 const QuizCover = ({ onStart }: { onStart: () => void }) => {
 	return (
@@ -9,32 +9,43 @@ const QuizCover = ({ onStart }: { onStart: () => void }) => {
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
-				justifyContent: 'center',
+				padding: '32px 0 40px 0',
+				justifyContent: 'space-between',
 				height: '100%',
-				'@media screen and (max-width:479px)': {
-					padding: '0 12px',
+				h3: {
+					fontSize: '72px',
 				},
 			}}
 		>
-			<Typography
-				variant='h3'
-				gutterBottom
-			>
-				Welcome!
-			</Typography>
-			<Typography
-				variant='body1'
-				align='center'
-				sx={{
-					maxWidth: '30ch',
-					marginBottom: '12px',
-				}}
-			>
-				Ready to challenge your mind? <br /> Join us and see if you have what it takes to be the ultimate champion!
-			</Typography>
+			<Box>
+				<Typography
+					variant='h3'
+					textAlign='center'
+				>
+					Welcome!
+				</Typography>
+				<Typography
+					variant='body1'
+					align='center'
+					sx={{
+						maxWidth: '32ch',
+						fontSize: '20px',
+					}}
+				>
+					Ready to challenge your mind? <br /> Join us and see if you have what it takes to be the ultimate champion!
+				</Typography>
+			</Box>
 			<Button
 				variant='contained'
 				onClick={onStart}
+				sx={{
+					width: '300px',
+					border: '2px solid #ffffff',
+					color: '#ffffff',
+					boxShadow: 'none',
+					background: 'transparent',
+					borderRadius: '45px',
+				}}
 			>
 				Start
 			</Button>
