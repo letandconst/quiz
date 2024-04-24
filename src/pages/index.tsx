@@ -44,8 +44,8 @@ export default function Home() {
 		},
 		{
 			question:
-				'Ahhoz, hogy megtaláljátok a következő kódot, menjetek Tajvan leghíresebb épületének kilátójába. Egy kis segítség: az ikonikus épület utóneve az alábbi összeadás eredménye: 15 + 10 + 3 + 2 + 12 + 18 + 9+ 6+ 11 + 15 <br/><br/>Amikor odaértetek, keressétek a digitális távcsövet a nagy virágszív mellett.  Ha belenéztek, egy piros hirdetőtáblán találtok egy fehérrel írt telefonszámot, ami a következő kódot rejti. ',
-			correctAnswer: '0493',
+				'Ahhoz, hogy megfejtsétek a következő kódot, el kell jutnotok Taiwan leghíresebb és legmagasabb épületéhez, és meg kell oldanotok az alábbi matematikai műveletet. Ehhez azonban, miután megérkeztetek, össze kell gyűjtenetek pár érdekes adatot az ikonikus épületről. Néhány információt a 89. emeleten fogtok megtalálni... <br/>a felvonó maximális sebessége + a gömb súlya-az épület második neve + a lengéscsillapítás mértéke - a gömböt tartó kábelek hossza',
+			correctAnswer: '1567',
 			type: 'text',
 		},
 		{
