@@ -204,6 +204,10 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 																<video
 																	controls
 																	ref={videoRef}
+																	disablePictureInPicture
+																	controlsList='nofullscreen'
+																	playsInline
+																	webkit-playsinline
 																>
 																	<source
 																		src={data[currentIndex].videoURL}
