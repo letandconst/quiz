@@ -37,7 +37,7 @@ export default function Home() {
 		},
 		{
 			question: 'Mi a neve a tradicionális fülöp-szigeteki harcművészetnek?',
-			videoURL: './video/video1.mov',
+			videoURL: './video/video-v2-1.mp4',
 			options: ['A. Arnis', 'B. Armes', 'C. Tinikling', 'D. Artes'],
 			correctAnswer: 'A. Arnis',
 			type: 'multiple_choice',
@@ -50,7 +50,7 @@ export default function Home() {
 		},
 		{
 			question: 'Mi a neve a Fülöp-szigetek északi hegyvidékein élő törzseknek?',
-			videoURL: './video/video2.mov',
+			videoURL: './video/video-v2-2.mp4',
 			options: ['A. Tagalog', 'B. Igorot', 'C. Iguana', 'D. Bontoc'],
 			correctAnswer: 'B. Igorot',
 			type: 'multiple_choice',
@@ -62,7 +62,7 @@ export default function Home() {
 		},
 		{
 			question: 'Mi a neve a kínai gőzgombócnak, amit változatos töltelékekkel árulnak?',
-			videoURL: './video/video3.mov',
+			videoURL: './video/video-v2-3.mp4',
 			options: ['A. Binalot', 'B. Dumpling', 'C. Balut', 'D. Gyoza'],
 			correctAnswer: 'B. Dumpling',
 			type: 'multiple_choice',
