@@ -205,6 +205,7 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 																	controls
 																	ref={videoRef}
 																	disablePictureInPicture
+																	controlsList='nofullscreen'
 																>
 																	<source
 																		src={data[currentIndex].videoURL}
