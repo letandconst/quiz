@@ -31,7 +31,7 @@ const QuizCompleted = () => {
 						fontSize: '36px',
 						maxWidth: '25ch',
 						'@media screen and (max-width:579px)': {
-							fontSize: '16px',
+							fontSize: '24px',
 						},
 					}}
 				>
