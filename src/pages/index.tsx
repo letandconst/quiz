@@ -37,20 +37,20 @@ export default function Home() {
 		},
 		{
 			question: 'Mi a neve a tradicionális fülöp-szigeteki harcművészetnek?',
-			videoURL: './video/video1.mov',
+			videoURL: './video/video2-1.mp4',
 			options: ['A. Arnis', 'B. Armes', 'C. Tinikling', 'D. Artes'],
 			correctAnswer: 'A. Arnis',
 			type: 'multiple_choice',
 		},
 		{
 			question:
-				'Ahhoz, hogy megfejtsétek a következő kódot, el kell jutnotok Taiwan leghíresebb és legmagasabb épületéhez, és meg kell oldanotok az alábbi matematikai műveletet. Ehhez azonban, miután megérkeztetek, össze kell gyűjtenetek pár érdekes adatot az ikonikus épületről. Néhány információt a 89. emeleten fogtok megtalálni... <br/>a felvonó maximális sebessége + a gömb súlya-az épület második neve + a lengéscsillapítás mértéke - a gömböt tartó kábelek hossza',
-			correctAnswer: '1567',
+				'Ahhoz, hogy megtaláljátok a következő kódot, menjetek Tajvan leghíresebb épületének kilátójába. Egy kis segítség: az ikonikus épület utóneve az alábbi összeadás eredménye: 15 + 10 + 3 + 2 + 12 + 18 + 9+ 6+ 11 + 15 <br/><br/>Amikor odaértetek, keressétek a digitális távcsövet a nagy virágszív mellett.  Ha belenéztek, egy piros hirdetőtáblán találtok egy fehérrel írt telefonszámot, ami a következő kódot rejti. ',
+			correctAnswer: '0493',
 			type: 'text',
 		},
 		{
 			question: 'Mi a neve a Fülöp-szigetek északi hegyvidékein élő törzseknek?',
-			videoURL: './video/video2.mov',
+			videoURL: './video/video2-2.mp4',
 			options: ['A. Tagalog', 'B. Igorot', 'C. Iguana', 'D. Bontoc'],
 			correctAnswer: 'B. Igorot',
 			type: 'multiple_choice',
@@ -62,7 +62,7 @@ export default function Home() {
 		},
 		{
 			question: 'Mi a neve a kínai gőzgombócnak, amit változatos töltelékekkel árulnak?',
-			videoURL: './video/video3.mov',
+			videoURL: './video/video2-3.mp4',
 			options: ['A. Binalot', 'B. Dumpling', 'C. Balut', 'D. Gyoza'],
 			correctAnswer: 'B. Dumpling',
 			type: 'multiple_choice',
