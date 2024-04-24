@@ -84,6 +84,7 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 			audio.play();
 		}
 	}, [incorrectAnswer, currentIndex]);
+
 	return (
 		<>
 			<Box
@@ -205,6 +206,9 @@ const QuizCard = ({ data, handleShowCountdown }: QuizCardProps) => {
 																	controls
 																	ref={videoRef}
 																	disablePictureInPicture
+																	controlsList='nofullscreen'
+																	playsInline
+																	webkit-playsinline
 																>
 																	<source
 																		src={data[currentIndex].videoURL}
