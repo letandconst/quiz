@@ -44,7 +44,7 @@ export default function Home() {
 		},
 		{
 			question:
-				'Ahhoz, hogy megfejtsétek a következő kódot, el kell jutnotok Taiwan leghíresebb és legmagasabb épületéhez, és meg kell oldanotok az alábbi matematikai műveletet. Ehhez azonban, miután megérkeztetek, össze kell gyűjtenetek pár érdekes adatot az ikonikus épületről. Néhány információt a 89. emeleten fogtok megtalálni... <br/>a felvonó maximális sebessége + a gömb súlya-az épület második neve + a lengéscsillapítás mértéke - a gömböt tartó kábelek hossza',
+				'Ahhoz, hogy megfejtsétek a következő kódot, el kell jutnotok Taiwan leghíresebb és legmagasabb épületéhez, és meg kell oldanotok az alábbi matematikai műveletet. Ehhez azonban, miután megérkeztetek, össze kell gyűjtenetek pár érdekes adatot az ikonikus épületről. Néhány információt a 89. emeleten fogtok megtalálni... <br/>a felvonó maximális sebessége + a gömb súlya - az épület második neve + a lengéscsillapítás mértéke - a gömböt tartó kábelek hossza',
 			correctAnswer: '1567',
 			type: 'text',
 		},
