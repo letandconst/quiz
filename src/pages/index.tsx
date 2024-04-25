@@ -10,6 +10,10 @@ export default function Home() {
 	const handleShowCountdown = (additionalTime: number, increment: boolean) => {
 		setShowCountdown(true);
 
+		const audio = new Audio('./audio/wrong-answer.mp3');
+		audio.volume = 1;
+		audio.play();
+
 		document.body.style.overflow = 'hidden';
 	};
 
