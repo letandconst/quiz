@@ -10,15 +10,10 @@ export default function Home() {
 	const handleShowCountdown = (additionalTime: number, increment: boolean) => {
 		setShowCountdown(true);
 
-		if (increment) {
-			setTimeLeft((prevTime) => prevTime + additionalTime);
+		const audio = new Audio('./audio/wrong-answer.mp3');
+		audio.volume = 1;
+		audio.play();
 
-			const audio = new Audio('./audio/wrong-answer.mp3');
-			audio.volume = 1;
-			audio.play();
-		} else {
-			setTimeLeft(180);
-		}
 		document.body.style.overflow = 'hidden';
 	};
 
